@@ -1,9 +1,7 @@
 //
 // Created by milica on 11.02.23.
 //
-////
-//// Created by milica on 10.02.23.
-////
+
 #include <iostream>
 #include "/home/milica/CLionProjects/SLAE3/Solve/solve.hpp"
 #include "gtest/gtest.h"
