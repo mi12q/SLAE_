@@ -7,7 +7,7 @@
 #include "gtest/gtest.h"
 using namespace std;
 
-TEST(test1, _3x3_matrix){
+TEST(test1, _4x4_matrix){
 std::vector<elements> v = {{0,2,3},{6,3,9},{2,5,2},{4,3,0}};
 std::vector<double> solution = {3.0, 5.0, 4.0, 2.0};
 std::vector<double> f = {21.0, 69.0, 34.0, 22.0};
