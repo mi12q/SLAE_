@@ -14,7 +14,7 @@ std::vector<double> f = {21.0, 69.0, 34.0, 22.0};
 Tridiagonal_matrix matrix(v);
 std::vector<double> x = solve(matrix,f);
 for (int i = 0; i < x.size(); i++){
-    ASSERT_NEAR(x[i], solution[i], 0.1);
+    ASSERT_NEAR(x[i], solution[i], 0.01);
 }
 
 }
@@ -25,7 +25,7 @@ TEST(test2, _4x4_matrix){
     Tridiagonal_matrix matrix(v);
     std::vector<double> x = solve(matrix,f);
     for (int i = 0; i < x.size(); i++){
-        ASSERT_NEAR(x[i], solution[i], 0.1);
+        ASSERT_NEAR(x[i], solution[i], 0.01);
     }
 
 }
@@ -37,7 +37,7 @@ TEST(test3, _6x6_matrix){
     Tridiagonal_matrix matrix(v);
     std::vector<double> x = solve(matrix,f);
     for (int i = 0; i < x.size(); i++){
-        ASSERT_NEAR(x[i], solution[i], 0.1);
+        ASSERT_NEAR(x[i], solution[i], 0.01);
     }
 
 }
