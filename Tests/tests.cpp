@@ -19,6 +19,19 @@ for (int i = 1; i < x.size(); i++){
 
 }
 
+TEST(test2, _4x4_matrix){
+    std::vector<elements> v = {{0,7,3},{1,9,10},{2,4,4},{4,3,0}};
+    std::vector<double> solution = {0.77, -1.47, 1.54, 0.94};
+    std::vector<double> f = {1, 3, 7, 9};
+    Tridiagonal_matrix matrix(v);
+    std::vector<double> x = solve(matrix,f);
+    for (int i = 1; i < x.size(); i++){
+        ASSERT_NEAR(x[i], solution[i], 0.1);
+    }
+
+}
+
+
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
