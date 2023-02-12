@@ -1,22 +1,21 @@
-//
-// Created by Milica on 9.2.2023..
-//
-
 #include "Tridiagonal_matrix.h"
 
-std::array<double, 3> &Tridiagonal_matrix::operator[](unsigned long long int i) {
-    static std::array<double, 3> row{};
-    row[0] = M[i].a;
-    row[1] = M[i].b;
-    row[2] = M[i].c;
-
-    return row;
-}
-
-Tridiagonal_matrix::Tridiagonal_matrix(std::vector<elements> &v) {
+template<typename T>
+Tridiagonal_matrix<T>::Tridiagonal_matrix(std::vector<elements<T>> &v) {
     this->M = v;
 }
 
-unsigned long long int Tridiagonal_matrix::size() {
+template<typename T>
+T Tridiagonal_matrix<T>::operator()(unsigned long long int i, unsigned long long int j) {
+    if(j == 0)
+        return M[i].a;
+    if(j==1)
+        return M[i].b;
+    if(j==2)
+        return M[i].c;
+}
+
+template<typename T>
+unsigned long long int Tridiagonal_matrix<T>::size() {
     return M.size();
 }
