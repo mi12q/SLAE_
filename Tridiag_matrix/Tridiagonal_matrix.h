@@ -18,10 +18,10 @@ class Tridiagonal_matrix{
 private:
     std::vector<elements<T>> M;
 public:
-    explicit Tridiagonal_matrix(std::vector<elements<T>>& v);
+    Tridiagonal_matrix(std::vector<elements<T>>& v);
     ~Tridiagonal_matrix()= default;
-    T operator()(unsigned long long int i,unsigned long long int j);
-    unsigned long long int size();
+    T operator()(unsigned long long int i,unsigned long long int j) const;
+    unsigned long long int size() const;
 };
 
 

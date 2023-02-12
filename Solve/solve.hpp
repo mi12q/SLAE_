@@ -1,7 +1,7 @@
 #include "../Tridiag_matrix/Tridiagonal_matrix.cpp"
 
 template<typename T>
-std::vector<T> solve(Tridiagonal_matrix<T> &M, std::vector<T>& f) {
+std::vector<T> solve(const Tridiagonal_matrix<T> &M, const std::vector<T>& f) {
 
     unsigned long long int n = M.size();
     std::vector<T> p(n);
