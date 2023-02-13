@@ -1,4 +1,4 @@
-#include "../Tridiag_matrix/Tridiagonal_matrix.cpp"
+#include "Tridiagonal_matrix.hpp"
 
 template<typename T>
 std::vector<T> solve(const Tridiagonal_matrix<T> &M, const std::vector<T>& f) {

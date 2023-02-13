@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../Solve/solve.hpp"
+#include "../src/solve.hpp"
 #include "gtest/gtest.h"
 using namespace std;
 
@@ -25,6 +25,7 @@ TEST(test2, _4x4_matrix){
     }
 
 }
+
 
 TEST(test3, _6x6_matrix){
     std::vector<elements<double>> v = {{0,10,3},{1,9,10},{2,5,7},{6,3,1}, {7,12,9},{3,5,0}};

@@ -1,7 +1,7 @@
 #include "Tridiagonal_matrix.h"
 
 template<typename T>
-Tridiagonal_matrix<T>::Tridiagonal_matrix(std::vector<elements<T>> &v) {
+Tridiagonal_matrix<T>::Tridiagonal_matrix(const std::vector<elements<T>> &v) {
     this->M = v;
 }
 
