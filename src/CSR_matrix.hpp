@@ -42,6 +42,14 @@ public:
         }
         return 0;
     }
-
+    std::vector<T> multiply(const std::vector<T> &x) const{
+        std::vector<T> res(x.size());
+        for (int i = 0; i < x.size(); ++i) {
+            res[i] = 0.0;
+            for (int j = rows[i]; j < rows[i + 1]; ++j)
+                res[i] += values[j] * x[columns[j]];
+        }
+        return res;
+    }
 };
 #endif //SLAE_CSR_MATRIX_HPP
