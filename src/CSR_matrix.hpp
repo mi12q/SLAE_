@@ -52,4 +52,5 @@ public:
         return res;
     }
 };
+
 #endif //SLAE_CSR_MATRIX_HPP
