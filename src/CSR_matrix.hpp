@@ -13,14 +13,14 @@ private:
     std::vector<int> columns;
     std::vector<int> rows = {0};
 public:
-    Matrix(std::map<std::pair<int, int>,T> &v){
+    Matrix(const std::map<std::pair<int, int>,T> &v){
         int non_zero = 0;
         int m = ((--v.end())->first).first;
         int n = ((--v.end())->first).second;
         for(int i = 0; i < m+1; i++){
             for(int j = 0; j < n+1; j++){
-                if (v[{i,j}] != 0) {
-                    values.push_back(v[{i,j}]);
+                if (v.at({i,j}) != 0) {
+                    values.push_back(v.at({i,j}));
                     columns.push_back(j);
                     non_zero++;
                 }
