@@ -10,8 +10,8 @@
 template<typename T>
 class Dense_matrix{
 private:
-    std::vector<T> M;
-    int row_length;
+    std::vector<T> M{};
+    int row_length = 0;
 public:
     Dense_matrix(const std::vector<T> &v, int length){
         this->M = v;
@@ -23,13 +23,11 @@ public:
     }
     std::vector<T> vector_mull(const std::vector<T> &x) {
         std::vector<T> res(x.size());
-        int m = 0;
         for (int i = 0; i < x.size(); i++) {
-            for (int j = m; j < x.size(); j++)
-                res[i] += M[j] * x.at(j);
-            m += x.size();
+            for (int j = 0; j < x.size(); j++) {
+                res[i] += M[i * row_length + j] * x.at(j);
+            }
         }
-
         return res;
     }
     const void operator + (const Dense_matrix &A) {
