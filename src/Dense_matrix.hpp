@@ -17,6 +17,7 @@ public:
     const T operator() (int i, int j) const{
         return M[i*row_length + j];
     }
+    const std::vector<T>& get_elements() const {return M;}
     const std::vector<T> vector_mull(const std::vector<T> &x) const{
         std::vector<T> res(x.size());
         for (int i = 0; i < x.size(); i++) {
@@ -26,7 +27,6 @@ public:
         }
         return res;
     }
-    const std::vector<T>& get_elements() const {return M;}
     const void operator + (const Dense_matrix &A) {
         if (M.size() == (A.M).size()) {
             for (int i = 0; i < (A.M).size(); i++)
@@ -41,6 +41,59 @@ public:
     }
 
 };
+
+template<typename T>
+std::ostream& operator << (std::ostream& os, const std::vector<T>& v){
+    for(int i = 0; i < v.size(); i++){
+        os << v[i] << " ";
+    }
+    return os;
+}
+
+template<typename T>
+std::vector<T> operator + (const std::vector<T>& x, const std::vector<T>& y){
+    std::vector<T> res(x.size());
+    for(int i = 0; i < x.size(); i++){
+        res[i] = x[i] + y[i];
+    }
+    return res;
+}
+
+template<typename T>
+std::vector<T> operator - (const std::vector<T>& x, const std::vector<T>& y){
+    std::vector<T> res(x.size());
+    for(int i = 0; i < x.size(); i++){
+        res[i] = x[i] - y[i];
+    }
+    return res;
+}
+
+template<typename T>
+std::vector<T> operator * (const std::vector<T>& x, const std::vector<T>& y){
+    std::vector<T> res(x.size());
+    for(int i = 0; i < x.size(); i++){
+        res[i] = x[i]*y[i];
+    }
+    return res;
+}
+
+template<typename T, typename Scalar>
+std::vector<T> operator * (const std::vector<T>&x, Scalar num){
+    std::vector<T> res(x.size());
+    for(int i = 0; i < x.size(); i++){
+        res[i] = x[i]*num;
+    }
+    return res;
+}
+
+template<typename T, typename Scalar>
+std::vector<T> operator * (Scalar num, const std::vector<T>&x){
+    std::vector<T> res(x.size());
+    for(int i = 0; i < x.size(); i++){
+        res[i] = x[i]*num;
+    }
+    return res;
+}
 
 
 #endif //SLAE__DENSE_MATRIX_HPP
