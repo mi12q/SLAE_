@@ -1,7 +1,3 @@
-//
-// Created by milica on 18.02.23.
-//
-
 #ifndef SLAE__DENSE_MATRIX_HPP
 #define SLAE__DENSE_MATRIX_HPP
 
@@ -21,7 +17,7 @@ public:
     const T operator() (int i, int j) const{
         return M[i*row_length + j];
     }
-    std::vector<T> vector_mull(const std::vector<T> &x) {
+    const std::vector<T> vector_mull(const std::vector<T> &x) const{
         std::vector<T> res(x.size());
         for (int i = 0; i < x.size(); i++) {
             for (int j = 0; j < x.size(); j++) {
@@ -30,18 +26,17 @@ public:
         }
         return res;
     }
+    const std::vector<T>& get_elements() const {return M;}
     const void operator + (const Dense_matrix &A) {
         if (M.size() == (A.M).size()) {
-            for (int i = 0; i < (A.M).size(); i ++)
-                M[i] += A.M[i];
-
+            for (int i = 0; i < (A.M).size(); i++)
+                M[i] += (A.M)[i];
         }
     }
     const void operator - (const Dense_matrix &A) {
-        if (M.size() == (A.M).size()) {
-            for (int i = 0; i < (A.M).size(); i ++)
-                M[i] -= A.M[i];
-
+        if (M.size() == (A.get_elements()).size()) {
+            for (int i = 0; i < (A.M).size(); i++)
+                M[i] -= (A.M)[i];
         }
     }
 
