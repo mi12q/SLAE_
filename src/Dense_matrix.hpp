@@ -2,6 +2,7 @@
 #define SLAE__DENSE_MATRIX_HPP
 
 #include <vector>
+#include <math.h>
 
 template<typename T>
 class Dense_matrix{
@@ -98,5 +99,13 @@ std::vector<T> operator - (const std::vector<T>& x, const std::vector<T>& y){
     return res;
 }
 
+template<typename T>
+double mod(const std::vector<T>& x){
+    double res;
+    for(int i = 0; i < x.size(); i++){
+        res+= pow(x[i]),2);
+    }
+    return pow(res,0.5);
+}
 
 #endif //SLAE__DENSE_MATRIX_HPP

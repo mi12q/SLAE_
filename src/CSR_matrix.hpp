@@ -33,9 +33,7 @@ public:
     const std::vector<int>& get_columns() const {return columns;}
     const std::vector<int>& get_rows() const {return rows;}
     const T operator() (int i, int j) const{
-        int r1 = rows[i];
-        int r2 = rows[i+1];
-        for(int r = r1; r < r2; r++){
+        for(int r = rows[i]; r < rows[i+1]; r++){
             if (columns[r] == j){
                 return values[r];
             }
@@ -43,9 +41,8 @@ public:
         return 0;
     }
     std::vector<T> multiply(const std::vector<T> &x) const{
-        std::vector<T> res(x.size());
+        std::vector<T> res(x.size(), 0);
         for (int i = 0; i < x.size(); i++) {
-            res[i] = 0.0;
             for (int j = rows[i]; j < rows[i + 1]; j++)
                 res[i] += values[j] * x[columns[j]];
         }
