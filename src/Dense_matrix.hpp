@@ -18,15 +18,7 @@ public:
         return M[i*row_length + j];
     }
     const std::vector<T>& get_elements() const {return M;}
-    const std::vector<T> vector_mull(const std::vector<T> &x) const{
-        std::vector<T> res(x.size());
-        for (int i = 0; i < x.size(); i++) {
-            for (int j = 0; j < x.size(); j++) {
-                res[i] += M[i * row_length + j] * x.at(j);
-            }
-        }
-        return res;
-    }
+    int get_length() const {return row_length;}
     const void operator + (const Dense_matrix &A) {
         if (M.size() == (A.M).size()) {
             for (int i = 0; i < (A.M).size(); i++)
@@ -41,32 +33,6 @@ public:
     }
 
 };
-
-template<typename T>
-std::ostream& operator << (std::ostream& os, const std::vector<T>& v){
-    for(int i = 0; i < v.size(); i++){
-        os << v[i] << " ";
-    }
-    return os;
-}
-
-template<typename T>
-std::vector<T> operator + (const std::vector<T>& x, const std::vector<T>& y){
-    std::vector<T> res(x.size());
-    for(int i = 0; i < x.size(); i++){
-        res[i] = x[i] + y[i];
-    }
-    return res;
-}
-
-template<typename T>
-std::vector<T> operator - (const std::vector<T>& x, const std::vector<T>& y){
-    std::vector<T> res(x.size());
-    for(int i = 0; i < x.size(); i++){
-        res[i] = x[i] - y[i];
-    }
-    return res;
-}
 
 template<typename T>
 std::vector<T> operator * (const std::vector<T>& x, const std::vector<T>& y){
@@ -91,6 +57,43 @@ std::vector<T> operator * (Scalar num, const std::vector<T>&x){
     std::vector<T> res(x.size());
     for(int i = 0; i < x.size(); i++){
         res[i] = x[i]*num;
+    }
+    return res;
+}
+
+template<typename T>
+std::vector<T> operator * (const Dense_matrix<T> &A, const std::vector<T>&x){
+    std::vector<T> res(x.size());
+    for (int i = 0; i < x.size(); i++) {
+        for (int j = 0; j < x.size(); j++) {
+            res[i] += (A.get_elements())[i * A.get_length() + j] * x.at(j);
+        }
+    }
+    return res;
+}
+
+template<typename T>
+std::ostream& operator << (std::ostream& os, const std::vector<T>& v){
+    for(int i = 0; i < v.size(); i++){
+        os << v[i] << " ";
+    }
+    return os;
+}
+
+template<typename T>
+std::vector<T> operator + (const std::vector<T>& x, const std::vector<T>& y){
+    std::vector<T> res(x.size());
+    for(int i = 0; i < x.size(); i++){
+        res[i] = x[i] + y[i];
+    }
+    return res;
+}
+
+template<typename T>
+std::vector<T> operator - (const std::vector<T>& x, const std::vector<T>& y){
+    std::vector<T> res(x.size());
+    for(int i = 0; i < x.size(); i++){
+        res[i] = x[i] - y[i];
     }
     return res;
 }
