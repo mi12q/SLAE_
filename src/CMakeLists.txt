@@ -4,4 +4,4 @@ project(SLAE_)
 set(CMAKE_CXX_STANDARD 17)
 
 file(GLOB_RECURSE src *.hpp *.h *.cpp)
-add_library(SLAE_ INTERFACE ${src} Dense_matrix.hpp ../Tests/Dense_matrix_tests.cpp)
+add_library(SLAE_ INTERFACE ${src} Householder.hpp)
