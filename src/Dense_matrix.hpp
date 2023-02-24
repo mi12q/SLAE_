@@ -2,7 +2,7 @@
 #define SLAE__DENSE_MATRIX_HPP
 
 #include <vector>
-#include <math.h>
+#include <cmath>
 
 template<typename T>
 class Dense_matrix{
@@ -39,7 +39,7 @@ template<typename T>
 std::vector<T> operator * (const std::vector<T>& x, const std::vector<T>& y){
     std::vector<T> res(x.size());
     for(int i = 0; i < x.size(); i++){
-        res[i] = x[i]*y[i];
+        res.push_back(x[i]*y[i]);
     }
     return res;
 }
@@ -48,7 +48,7 @@ template<typename T, typename Scalar>
 std::vector<T> operator * (const std::vector<T>&x, Scalar num){
     std::vector<T> res(x.size());
     for(int i = 0; i < x.size(); i++){
-        res[i] = x[i]*num;
+        res.push_back(x[i]*num);
     }
     return res;
 }
@@ -57,7 +57,7 @@ template<typename T, typename Scalar>
 std::vector<T> operator * (Scalar num, const std::vector<T>&x){
     std::vector<T> res(x.size());
     for(int i = 0; i < x.size(); i++){
-        res[i] = x[i]*num;
+        res.push_back(x[i]*num);
     }
     return res;
 }
@@ -85,7 +85,7 @@ template<typename T>
 std::vector<T> operator + (const std::vector<T>& x, const std::vector<T>& y){
     std::vector<T> res(x.size());
     for(int i = 0; i < x.size(); i++){
-        res[i] = x[i] + y[i];
+        res.push_back(x[i] + y[i]);
     }
     return res;
 }
@@ -94,7 +94,7 @@ template<typename T>
 std::vector<T> operator - (const std::vector<T>& x, const std::vector<T>& y){
     std::vector<T> res(x.size());
     for(int i = 0; i < x.size(); i++){
-        res[i] = x[i] - y[i];
+        res.push_back(x[i] - y[i]);
     }
     return res;
 }
@@ -103,7 +103,7 @@ template<typename T>
 double mod(const std::vector<T>& x){
     double res;
     for(int i = 0; i < x.size(); i++){
-        res+= pow(x[i]),2);
+        res+= pow(x[i],2);
     }
     return pow(res,0.5);
 }
