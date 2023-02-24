@@ -101,7 +101,7 @@ std::vector<T> operator - (const std::vector<T>& x, const std::vector<T>& y){
 
 template<typename T>
 double mod(const std::vector<T>& x){
-    double res;
+    double res = 0;
     for(int i = 0; i < x.size(); i++){
         res+= pow(x[i],2);
     }
