@@ -15,10 +15,8 @@ private:
 public:
     Matrix(const std::map<std::pair<int, int>,T> &v){
         int non_zero = 0;
-        int m = ((--v.end())->first).first;
-        int n = ((--v.end())->first).second;
-        for(int i = 0; i < m+1; i++){
-            for(int j = 0; j < n+1; j++){
+        for(int i = 0; i < ((--v.end())->first).first+1; i++){
+            for(int j = 0; j < ((--v.end())->first).second+1; j++){
                 if (v.at({i,j}) != 0) {
                     values.push_back(v.at({i,j}));
                     columns.push_back(j);
