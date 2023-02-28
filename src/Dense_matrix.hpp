@@ -3,8 +3,9 @@
 
 #include <vector>
 #include <cmath>
-
+#include<iostream>
 template<typename T>
+
 class Dense_matrix{
 private:
     std::vector<T> M{};
@@ -33,20 +34,39 @@ public:
         }
     }
 
+    const std::vector<T> get_column(int col_num) const{
+        std::vector<T> column;
+        for(int i = 0; i < M.size()/row_length; i++){
+            column.push_back(M[i*row_length + col_num]);
+        }
+        return column;
+    }
+
+    void swap_column(int col_num, const std::vector<T>& new_col) {
+        for(int i = 0; i < M.size()/row_length; i++){
+            M[i*row_length + col_num] = new_col[i];
+        }
+    }
+
+    void swap_element(int i, int j, T num) {
+        M[i*row_length + j] = num;
+    }
+
+
 };
 
 template<typename T>
-std::vector<T> operator * (const std::vector<T>& x, const std::vector<T>& y){
-    std::vector<T> res(x.size());
+double operator * (const std::vector<T>& x, const std::vector<T>& y){
+    double res = 0;
     for(int i = 0; i < x.size(); i++){
-        res.push_back(x[i]*y[i]);
+        res+= x[i]*y[i];
     }
     return res;
 }
 
 template<typename T, typename Scalar>
 std::vector<T> operator * (const std::vector<T>&x, Scalar num){
-    std::vector<T> res(x.size());
+    std::vector<T> res;
     for(int i = 0; i < x.size(); i++){
         res.push_back(x[i]*num);
     }
@@ -55,7 +75,7 @@ std::vector<T> operator * (const std::vector<T>&x, Scalar num){
 
 template<typename T, typename Scalar>
 std::vector<T> operator * (Scalar num, const std::vector<T>&x){
-    std::vector<T> res(x.size());
+    std::vector<T> res;
     for(int i = 0; i < x.size(); i++){
         res.push_back(x[i]*num);
     }
@@ -83,7 +103,7 @@ std::ostream& operator << (std::ostream& os, const std::vector<T>& v){
 
 template<typename T>
 std::vector<T> operator + (const std::vector<T>& x, const std::vector<T>& y){
-    std::vector<T> res(x.size());
+    std::vector<T> res;
     for(int i = 0; i < x.size(); i++){
         res.push_back(x[i] + y[i]);
     }
@@ -92,11 +112,30 @@ std::vector<T> operator + (const std::vector<T>& x, const std::vector<T>& y){
 
 template<typename T>
 std::vector<T> operator - (const std::vector<T>& x, const std::vector<T>& y){
-    std::vector<T> res(x.size());
+    std::vector<T> res;
     for(int i = 0; i < x.size(); i++){
         res.push_back(x[i] - y[i]);
     }
     return res;
+}
+
+template <typename T>
+double mod(const std::vector<T>& x){
+    double res = 0;
+    for(int i = 0; i < x.size(); i++){
+        res+= pow(x[i],2);
+    }
+    return pow(res,0.5);
+}
+
+template <typename T>
+int sign(const std::vector<T>& x){
+    if(x[0] < 0){
+        return -1;
+    }
+    else {
+        return 1;
+    }
 }
 
 
