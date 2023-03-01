@@ -11,7 +11,7 @@ struct QR{
 };
 
 template<typename T>
-Dense_matrix<T> Householder(const Dense_matrix<T> &M) {
+struct QR<T> Householder(const Dense_matrix<T> &M) {
     Dense_matrix<T> R = M;
     int size = R.get_elements().size() / R.get_length();
     std::vector<T> e(size, 0); // vector e1
@@ -41,7 +41,7 @@ Dense_matrix<T> Householder(const Dense_matrix<T> &M) {
     
     for (int n = 1; n < R.get_length(); n++) { //repeating for other columns
         size--;
-        std::vector<T> e(size, 0); //new basis vector
+        std::vector<T> e(size, 0); //new vector e1
         e[0] = 1;
         std::vector<T> a = R.get_column(n);
         std::vector<T> x = std::vector<T>(a.begin() + n, a.end());
@@ -70,15 +70,10 @@ Dense_matrix<T> Householder(const Dense_matrix<T> &M) {
             }
         }
 
-
-        }
-
-    return Q;
-
+    }
+    QR result = {R,Q};
+    return result;
 
 }
-
-
-
 
 #endif //SLAE__HOUSEHOLDER_HPP

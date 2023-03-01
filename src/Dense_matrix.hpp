@@ -49,7 +49,6 @@ public:
         return row;
     }
 
-
     void swap_column(int col_num, const std::vector<T>& new_col) {
         for(int i = 0; i < M.size()/row_length; i++){
             M[i*row_length + col_num] = new_col[i];
@@ -59,6 +58,7 @@ public:
     void swap_element(int i, int j, T num) {
         M[i * row_length + j] = num;
     }
+
 
 };
 
@@ -173,5 +173,13 @@ int sign(const std::vector<T>& x){
     }
 }
 
+template <typename T>
+void transpose(Dense_matrix<T> &M){
+    for (int i = 0; i < M.get_elements().size()/M.get_length(); i++){
+        for (int j = 0; j < M.get_length(); j++){
+            M.swap_element(i,j,M(j,i));
+        }
+    }
+}
 
 #endif //SLAE__DENSE_MATRIX_HPP
