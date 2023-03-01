@@ -41,6 +41,14 @@ public:
         }
         return column;
     }
+    const std::vector<T> get_row(int row_num) const{
+        std::vector<T> row;
+        for(int j = 0; j < row_length; j++){
+            row.push_back(M[row_num*row_length + j]);
+        }
+        return row;
+    }
+
 
     void swap_column(int col_num, const std::vector<T>& new_col) {
         for(int i = 0; i < M.size()/row_length; i++){
@@ -49,9 +57,8 @@ public:
     }
 
     void swap_element(int i, int j, T num) {
-        M[i*row_length + j] = num;
+        M[i * row_length + j] = num;
     }
-
 
 };
 
@@ -60,6 +67,17 @@ double operator * (const std::vector<T>& x, const std::vector<T>& y){
     double res = 0;
     for(int i = 0; i < x.size(); i++){
         res+= x[i]*y[i];
+    }
+    return res;
+}
+
+template<typename T>
+std::vector<T> transposed_prod(const std::vector<T>& x) {
+    std::vector<T> res;
+    for (int i = 0; i < x.size(); i++) {
+        for (int j = 0; j < x.size(); j++) {
+            res.push_back(x[i] * x[j]);
+        }
     }
     return res;
 }
@@ -78,6 +96,14 @@ std::vector<T> operator * (Scalar num, const std::vector<T>&x){
     std::vector<T> res;
     for(int i = 0; i < x.size(); i++){
         res.push_back(x[i]*num);
+    }
+    return res;
+}
+template<typename T, typename Scalar>
+std::vector<T> operator / (const std::vector<T>& x, Scalar num){
+    std::vector<T> res;
+    for(int i = 0; i < x.size(); i++){
+        res.push_back(x[i]/num);
     }
     return res;
 }
@@ -115,6 +141,15 @@ std::vector<T> operator - (const std::vector<T>& x, const std::vector<T>& y){
     std::vector<T> res;
     for(int i = 0; i < x.size(); i++){
         res.push_back(x[i] - y[i]);
+    }
+    return res;
+}
+
+template <typename T>
+double row_column_prod(const std::vector<T>& x){
+    double res = 0;
+    for(int i = 0; i < x.size(); i++){
+        res+= pow(x[i],2);
     }
     return res;
 }
