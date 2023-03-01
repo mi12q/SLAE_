@@ -52,14 +52,13 @@ struct QR<T> Householder(const Dense_matrix<T> &M) {
             R.swap_element(i, n, 0);
         }
 
-        for (int j = 1 + n; j < R.get_length(); j++) { //transforming columns after k
+        for (int j = 1 + n; j < R.get_length(); j++) { //transforming columns after n
             std::vector<T> a = R.get_column(j);
             std::vector<T> x = std::vector<T>(a.begin() + n, a.end());
             std::vector<T> prod = x - 2 * v * ((v * x) / pow(mod(v), 2));
             for (int i = 0; i < size; i++) {
                 R.swap_element(i + n, j, prod[i]);
             }
-
         }
         for (int i = 0; i < R.get_length() ; i++) {
             a = Q.get_row(i);
@@ -69,11 +68,9 @@ struct QR<T> Householder(const Dense_matrix<T> &M) {
                 Q.swap_element(i,j+n,prod[j]);
             }
         }
-
     }
     QR result = {R,Q};
     return result;
-
 }
 
 #endif //SLAE__HOUSEHOLDER_HPP
