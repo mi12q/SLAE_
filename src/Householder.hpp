@@ -63,13 +63,13 @@ struct QR<T> Householder(const Dense_matrix<T> &M) {
         for (int i = 0; i < R.get_length() ; i++) {
             a = Q.get_row(i);
             std::vector<T> x = std::vector<T>(a.begin()+n , a.end());
-            for(int j = 0; j < size ; j++){
+            for(int j = 0; j < size; j++){
                 std::vector<T> prod = x - 2 * v * ((v * x) / pow(mod(v), 2));
-                Q.swap_element(i,j+n,prod[j]);
+                Q.swap_element(i,j + n,prod[j]);
             }
         }
     }
-    QR result = {R,Q};
+    QR result = {Q,R};
     return result;
 }
 
