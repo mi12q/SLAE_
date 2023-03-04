@@ -2,8 +2,8 @@
 #include "../src/CSR_matrix.hpp"
 #include "../src/Dense_matrix.hpp"
 
-#ifndef SLAE__PROSTAYA_HPP
-#define SLAE__PROSTAYA_HPP
+#ifndef SLAE__SIMPLE_ITERATION_HPP
+#define SLAE__SIMPLE_ITERATION_HPP
 
 
 template <typename T>
@@ -17,4 +17,4 @@ std::vector<T> simple_iteration(const Matrix<T> &A, const std::vector<T> &b, std
 }
 
 
-#endif //SLAE__PROSTAYA_HPP
+#endif //SLAE__SIMPLE_ITERATION_HPP
