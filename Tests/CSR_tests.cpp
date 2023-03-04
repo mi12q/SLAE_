@@ -1,7 +1,7 @@
 #include <iostream>
 #include "../src/CSR_matrix.hpp"
 #include "gtest/gtest.h"
-using namespace std;
+
 
 TEST(csr_test1, _3x3_matrix){
     std::map<std::pair<int, int>, double> v;

@@ -18,7 +18,7 @@ std::pair<Dense_matrix<T>, Dense_matrix<T>> Householder(const Dense_matrix<T> &M
                 q[i * R.get_length()+ j] = 1;
         }
     }
-    q = q - 2 * transposed_prod(v)/row_column_prod(v);
+    q = q - 2 * transposed_prod(v)/squares(v);
     Dense_matrix<T> Q(q, R.get_length()); //calculating Q[0]
     std::vector<T> prod = R.get_column(0) - 2 * v * ((v * R.get_column(0)) / pow(mod(v), 2));
     R.swap_element(0, 0, prod[0]);

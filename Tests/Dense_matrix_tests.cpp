@@ -1,7 +1,7 @@
 #include <iostream>
 #include "../src/Dense_matrix.hpp"
 #include "gtest/gtest.h"
-using namespace std;
+
 
 TEST(dense_test1, _3x3_matrix){
     std::vector<double> v = {1,2,3,2,2,4,5,6,7};

@@ -1,7 +1,7 @@
 #include <iostream>
 #include "../src/solve.hpp"
 #include "gtest/gtest.h"
-using namespace std;
+
 
 TEST(test1, _4x4_matrix){
     std::vector<elements<double>> v = {{0,2,3},{6,3,9},{2,5,2},{4,3,0}};

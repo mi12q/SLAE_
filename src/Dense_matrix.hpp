@@ -82,6 +82,7 @@ std::vector<T> transposed_prod(const std::vector<T>& x) {
     return res;
 }
 
+
 template<typename T, typename Scalar>
 std::vector<T> operator * (const std::vector<T>&x, Scalar num){
     std::vector<T> res;
@@ -120,6 +121,27 @@ std::vector<T> operator * (const Dense_matrix<T> &A, const std::vector<T>&x){
 }
 
 template<typename T>
+Dense_matrix<T> operator * (const Dense_matrix<T> &A, const Dense_matrix<T> &B){
+    std::vector<T> res;
+    for(int i = 0; i < A.get_elements().size()/A.get_length(); i++){
+        for(int j = 0; j < B.get_length(); j++) {
+            res.push_back(A.get_row(i) * B.get_column(j));
+        }
+    }
+    Dense_matrix<T> matrix(res, A.get_length());
+    return matrix;
+}
+
+template<typename T>
+bool operator == (const Dense_matrix<T> &A, const Dense_matrix<T> &B){
+    for(int i = 0; i < A.get_elements().size(); i ++){
+        if (std::abs(A.get_elements()[i] - B.get_elements()[i]) > 0.01)
+            return false;
+    }
+    return true;
+}
+
+template<typename T>
 std::ostream& operator << (std::ostream& os, const std::vector<T>& v){
     for(int i = 0; i < v.size(); i++){
         os << v[i] << " ";
@@ -146,7 +168,7 @@ std::vector<T> operator - (const std::vector<T>& x, const std::vector<T>& y){
 }
 
 template <typename T>
-double row_column_prod(const std::vector<T>& x){
+double squares(const std::vector<T>& x){
     double res = 0;
     for(int i = 0; i < x.size(); i++){
         res+= pow(x[i],2);
@@ -165,12 +187,9 @@ double mod(const std::vector<T>& x){
 
 template <typename T>
 int sign(const std::vector<T>& x){
-    if(x[0] < 0){
+    if(x[0] < 0)
         return -1;
-    }
-    else {
-        return 1;
-    }
+    return 1;
 }
 
 template <typename T>
@@ -180,6 +199,26 @@ void transpose(Dense_matrix<T> &M){
             M.swap_element(i,j,M(j,i));
         }
     }
+}
+
+template <typename T>
+bool upper_diagonal(Dense_matrix<T> &M){
+    for(int i = 0; i < M.get_elements().size()/M.get_length(); i++){
+        for(int j = 0; j < i; j++){
+            if (M(i,j) != 0)
+                return false;
+        }
+    }
+    return true;
+}
+
+template <typename T>
+bool unitary(Dense_matrix<T> &M){
+    for(int i = 0; i < M.get_elements().size()/M.get_length(); i++){
+        if(std::abs(squares(M.get_row(i))-1) > 0.1)
+            return false;
+}
+    return true;
 }
 
 #endif //SLAE__DENSE_MATRIX_HPP
