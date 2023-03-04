@@ -13,3 +13,6 @@ target_link_libraries(Dense_matrix_tests SLAE_ gtest gtest_main)
 
 add_executable(Householder Householder.cpp)
 target_link_libraries(Householder SLAE_ gtest gtest_main)
+
+add_executable(iterations iterations.cpp)
+target_link_libraries(iterations SLAE_ gtest gtest_main)
