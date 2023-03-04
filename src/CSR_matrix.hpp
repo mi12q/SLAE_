@@ -60,7 +60,11 @@ public:
     }
 };
 
+//template<typename T>
+//Matrix<T> inversed_diagonal(const Matrix<T> &A, int rows_num, int columns_num){
+//    for(int i = 0; i < rows_num; i++){
+//        for(int j = 0; j < columns_num; j++)
+//    }
+//}
 
-
-
-#endif SLAE_CSR_MATRIX_HPP
+#endif //SLAE_CSR_MATRIX_HPP
