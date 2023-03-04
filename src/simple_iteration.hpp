@@ -7,12 +7,14 @@
 
 
 template <typename T>
-std::vector<T> simple_iteration(const Matrix<T> &A, const std::vector<T> &b, std::vector<T> &x, T tolerance, T tau){
+std::vector<T> simple_iteration(const Matrix<T> &A, const std::vector<T> &b,const std::vector<T> &x, T tolerance, T tau){
     std::vector<T> r;
-    while((A.multiply(x)-b).size() > tolerance){
-        x = x - tau*(A.multiply(x) - b);
-    }
+    std::vector<T> x1 = x;
     r = A.multiply(x) - b;
+    while(mod(r) > tolerance){
+        x1 = x1 - tau*(A.multiply(x1) - b);
+        r = A.multiply(x1) - b;
+    }
     return r;
 }
 

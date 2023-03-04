@@ -46,6 +46,21 @@ public:
         }
         return res;
     }
+
+    std::vector<T> multiply_LU(const std::vector<T> &x) const{
+        std::vector<T> res(x.size(), 0);
+        for (int i = 0; i < x.size(); i++) {
+            for (int j = rows[i]; j < rows[i + 1]; j++)
+                if (i == columns[j])
+                    continue;
+                else
+                    res[i] += values[j] * x[columns[j]];
+        }
+        return res;
+    }
 };
 
-#endif //SLAE_CSR_MATRIX_HPP
+
+
+
+#endif SLAE_CSR_MATRIX_HPP
