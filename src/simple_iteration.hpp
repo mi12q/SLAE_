@@ -12,10 +12,10 @@ std::vector<T> simple_iteration(const Matrix<T> &A, const std::vector<T> &b,cons
     std::vector<T> x1 = x;
     r = A.multiply(x) - b;
     while(mod(r) > tolerance){
-        x1 = x1 - tau*(A.multiply(x1) - b);
         r = A.multiply(x1) - b;
+        x1 = x1 - tau*r;
     }
-    return r;
+    return x1;
 }
 
 
