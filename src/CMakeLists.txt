@@ -4,4 +4,4 @@ project(SLAE_)
 set(CMAKE_CXX_STANDARD 17)
 
 file(GLOB_RECURSE src *.hpp *.h *.cpp)
-add_library(SLAE_ INTERFACE ${src})
+add_library(SLAE_ INTERFACE ${src} iteration_methods/gauss_seidel.hpp)

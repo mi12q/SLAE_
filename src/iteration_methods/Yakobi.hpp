@@ -2,6 +2,7 @@
 #define SLAE__YAKOBI_HPP
 
 #include <iostream>
+#include <fstream>
 #include "../CSR_matrix.hpp"
 #include "../Dense_matrix.hpp"
 
@@ -10,10 +11,12 @@ std::pair<T,T> Yakobi(const Matrix<T> &A, const std::vector<T> &b, const std::ve
     std::ofstream file;
     file.open("/home/milica/CLionProjects/SLAE_/src/iteration_methods/Yakobi.txt");
     std::vector<T> x1 = x;
-    std::vector<T> r = A.multiply(x)-b;
+    std::vector<T> r = A.multiply(x1)-b;
+    std::vector<T> temp;
     int n;
     while(mod(r) > tolerance){
-        x1 = mul_components(static_cast<const std::vector<T>>(inverse_diagonal(A, dim1, dim2)),b-static_cast<const std::vector<T>>(A.multiply_LU(x1)));
+        temp = x1;
+        x1 = mul_components(static_cast<const std::vector<T>>(inverse_diagonal(A, dim1, dim2)),b-static_cast<const std::vector<T>>(A.multiply_LU(temp)));
         r = A.multiply(x1) - b;
         file << mod(r) << " " << n << std::endl;
         n++;
