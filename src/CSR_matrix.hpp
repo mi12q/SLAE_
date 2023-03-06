@@ -61,7 +61,6 @@ public:
         return res;
     }
 
-
 };
 
 template <typename T>

@@ -72,6 +72,16 @@ double operator * (const std::vector<T>& x, const std::vector<T>& y){
 }
 
 template<typename T>
+std::vector<T> mul_components(const std::vector<T>& x, const std::vector<T>& y){
+    std::vector<T> res;
+    for(int i = 0; i < x.size(); i++){
+        res.push_back(x[i]*y[i]);
+    }
+    return res;
+}
+
+
+template<typename T>
 std::vector<T> transposed_prod(const std::vector<T>& x) {
     std::vector<T> res;
     for (int i = 0; i < x.size(); i++) {
