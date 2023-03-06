@@ -5,6 +5,8 @@
 #include <utility>
 #include <map>
 #include <vector>
+#include <algorithm>
+
 
 template<typename T>
 class Matrix{
@@ -58,13 +60,24 @@ public:
         }
         return res;
     }
+
+
 };
 
-//template<typename T>
-//Matrix<T> inversed_diagonal(const Matrix<T> &A, int rows_num, int columns_num){
-//    for(int i = 0; i < rows_num; i++){
-//        for(int j = 0; j < columns_num; j++)
-//    }
-//}
+template <typename T>
+std::vector<T> inverse_diagonal(const Matrix <T> &A, int dim1, int dim2){
+    std::vector<T> diag;
+    for(int i=0; i < dim1; i++){
+        for (int j=0; j < dim2; j++){
+            if(i==j){
+                diag.push_back(1/A(i,j));
+            }
+        }
+    }
+
+    return diag;
+}
+
+
 
 #endif //SLAE_CSR_MATRIX_HPP

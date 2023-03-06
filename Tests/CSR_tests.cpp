@@ -1,5 +1,6 @@
 #include <iostream>
 #include "../src/CSR_matrix.hpp"
+#include "../src/Dense_matrix.hpp"
 #include "gtest/gtest.h"
 
 
