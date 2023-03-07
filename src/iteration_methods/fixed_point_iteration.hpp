@@ -6,7 +6,6 @@
 #ifndef SLAE__SIMPLE_ITERATION_HPP
 #define SLAE__SIMPLE_ITERATION_HPP
 
-
 template <typename T>
 std::pair<T,T> fixed_point_iteration(const Matrix<T> &A, const std::vector<T> &b,const std::vector<T> &x, T tolerance, T tau){
     std::ofstream file;
