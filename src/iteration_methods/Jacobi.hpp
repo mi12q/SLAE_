@@ -9,7 +9,7 @@
 template <typename T>
 std::vector<T> Jacobi(const Matrix<T> &A, const std::vector<T> &b, const std::vector <T> &x, T tolerance, int dim1, int dim2){
     std::ofstream file;
-    file.open("/home/milica/CLionProjects/SLAE_/src/iteration_methods/Yakobi.txt");
+    file.open("/home/milica/CLionProjects/SLAE_/src/iteration_methods/Jacobi.txt");
     std::vector<T> x1 = x;
     std::vector<T> r = A.multiply(x1)-b;
     int n = 0;
