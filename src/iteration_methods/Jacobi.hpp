@@ -7,7 +7,7 @@
 #include "../Dense_matrix.hpp"
 
 template <typename T>
-std::pair<T,T> Jacobi(const Matrix<T> &A, const std::vector<T> &b, const std::vector <T> &x, T tolerance, int dim1, int dim2){
+std::vector<T> Jacobi(const Matrix<T> &A, const std::vector<T> &b, const std::vector <T> &x, T tolerance, int dim1, int dim2){
     std::ofstream file;
     file.open("/home/milica/CLionProjects/SLAE_/src/iteration_methods/Yakobi.txt");
     std::vector<T> x1 = x;
@@ -19,8 +19,7 @@ std::pair<T,T> Jacobi(const Matrix<T> &A, const std::vector<T> &b, const std::ve
         file << mod(r) << " " << n << std::endl;
         n++;
     }
-    std::cout << x1 << std::endl;
-    return std::make_pair(mod(r), n);
+    return x1;
 }
 
 

@@ -7,7 +7,7 @@
 #define SLAE__SIMPLE_ITERATION_HPP
 
 template <typename T>
-std::pair<T,T> fixed_point_iteration(const Matrix<T> &A, const std::vector<T> &b,const std::vector<T> &x, T tolerance, T tau){
+std::vector<T> fixed_point_iteration(const Matrix<T> &A, const std::vector<T> &b,const std::vector<T> &x, T tolerance, T tau){
     std::ofstream file;
     file.open("/home/milica/CLionProjects/SLAE_/src/iteration_methods/fixed_point.txt");
     std::vector<T> x1 = x;
@@ -20,7 +20,7 @@ std::pair<T,T> fixed_point_iteration(const Matrix<T> &A, const std::vector<T> &b
         n++;
     }
     file.close();
-    return std::make_pair(mod(r),n);
+    return x1;
 }
 
 
