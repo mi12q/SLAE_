@@ -9,9 +9,6 @@ template <typename T>
 std::vector<T> Gauss_seidel(const Matrix<T> &A, const std::vector<T> &b, const std::vector <T> &x, T tolerance){
     std::ofstream file;
     file.open("/home/milica/CLionProjects/SLAE_/src/iteration_methods/gauss_seidel.txt");
-    std::vector<int> rows = A.get_rows();
-    std::vector<int> columns = A.get_columns();
-    std::vector<T> values = A.get_values();
     std::vector<T> x0 = x;
     T diag_el;
     std::vector<T> r = A.multiply(x)-b;
@@ -19,12 +16,12 @@ std::vector<T> Gauss_seidel(const Matrix<T> &A, const std::vector<T> &b, const s
     while(mod(r) > tolerance){
         for(int i = 0 ; i < x.size(); i++){
             x0[i] = b[i];
-            for(int j = rows[i]; j < rows[i+1]; j++){
-                if (columns[j] == i){
+            for(int j = A.get_rows()[i]; j < A.get_rows()[i+1]; j++){
+                if (A.get_columns()[j] == i){
                     diag_el = A(i,i);
                     continue;
                 }
-                x0[i] -= values[j]*x0[columns[j]];
+                x0[i] -= A.get_values()[j]*x0[A.get_columns()[j]];
             }
             x0[i] = x0[i]/diag_el;
         }
