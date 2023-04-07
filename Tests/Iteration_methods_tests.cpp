@@ -1,13 +1,14 @@
 #include <iostream>
-#include "../src/iteration_methods/fixed_point_iteration.hpp"
+#include "../src/iteration_methods/MPI.hpp"
 #include "../src/iteration_methods/Jacobi.hpp"
 #include "../src/iteration_methods/gauss_seidel.hpp"
 #include "../src/iteration_methods/MPI_chebyshev.hpp"
 #include "../src/iteration_methods/SOR.hpp"
 #include "../src/iteration_methods/SSOR.hpp"
+#include "../src/iteration_methods/Gradient_descent.hpp"
 #include "gtest/gtest.h"
 
-TEST(Fixed_point_iteration, _3x3_matrix){
+TEST(MPI, _3x3_matrix){
     std::map<std::pair<int, int>, double> v;
     v[{0, 0}] = 12;
     v[{0, 1}] = 17;
@@ -24,7 +25,7 @@ TEST(Fixed_point_iteration, _3x3_matrix){
     std::vector<double> x = {1,1,1};
     double tolerance = pow(10,-12);
     std::vector<double> solution = {0.0804084117,0.0000194982, 0.0115891967};
-    std::vector<double> result = fixed_point_iteration(M, b, x, tolerance, 0.0001);
+    std::vector<double> result = MPI(M, b, x, tolerance, 0.0001);
     for (int i = 0; i < result.size(); i++){
         ASSERT_NEAR(result[i], solution[i], 0.01);
     }
@@ -148,6 +149,29 @@ TEST(SSOR, _3x3_matrix){
         ASSERT_NEAR(result[i], solution[i], 0.01);
     }
 
+}
+
+TEST(Gradient_descent, _3x3_matrix){
+    std::map<std::pair<int, int>, double> v;
+    v[{0, 0}] = 12;
+    v[{0, 1}] = 17;
+    v[{0, 2}] = 3;
+    v[{1, 0}] = 17;
+    v[{1, 1}] = 15825;
+    v[{1, 2}] = 28;
+    v[{2, 0}] = 3;
+    v[{2, 1}] = 28;
+    v[{2, 2}] = 138;
+
+    Matrix M(v);
+    std::vector<double> b = {1,2,3};
+    std::vector<double> x = {1,1,1};
+    double tolerance = pow(10,-12);
+    std::vector<double> solution = {0.0804084117,0.0000194982, 0.0115891967};
+    std::vector<double> result = Gradient_descent(M, b, x, tolerance);
+    for (int i = 0; i < result.size(); i++){
+        ASSERT_NEAR(result[i], solution[i], 0.01);
+    }
 }
 
 int main(int argc, char **argv) {
