@@ -6,6 +6,7 @@
 #include "../src/iteration_methods/SOR.hpp"
 #include "../src/iteration_methods/SSOR.hpp"
 #include "../src/iteration_methods/Gradient_descent.hpp"
+#include "../src/iteration_methods/Conjugate_gradient.hpp"
 #include "gtest/gtest.h"
 
 TEST(MPI, _3x3_matrix){
@@ -169,6 +170,29 @@ TEST(Gradient_descent, _3x3_matrix){
     double tolerance = pow(10,-12);
     std::vector<double> solution = {0.0804084117,0.0000194982, 0.0115891967};
     std::vector<double> result = Gradient_descent(M, b, x, tolerance);
+    for (int i = 0; i < result.size(); i++){
+        ASSERT_NEAR(result[i], solution[i], 0.01);
+    }
+}
+
+TEST(Conjugate_gradient, _3x3_matrix){
+    std::map<std::pair<int, int>, double> v;
+    v[{0, 0}] = 12;
+    v[{0, 1}] = 17;
+    v[{0, 2}] = 3;
+    v[{1, 0}] = 17;
+    v[{1, 1}] = 15825;
+    v[{1, 2}] = 28;
+    v[{2, 0}] = 3;
+    v[{2, 1}] = 28;
+    v[{2, 2}] = 138;
+
+    Matrix M(v);
+    std::vector<double> b = {1,2,3};
+    std::vector<double> x = {1,1,1};
+    double tolerance = pow(10,-12);
+    std::vector<double> solution = {0.0804084117,0.0000194982, 0.0115891967};
+    std::vector<double> result = Conjugate_gradient(M, b, x, tolerance);
     for (int i = 0; i < result.size(); i++){
         ASSERT_NEAR(result[i], solution[i], 0.01);
     }
