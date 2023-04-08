@@ -17,11 +17,11 @@ std::vector<T> Gradient_descent(const Matrix<T> &A, const std::vector<T> &b,cons
         alpha = r*r/ (r*A.multiply(r));
         x1 = x1 - alpha*(A.multiply(x1) - b);
         r = A.multiply(x1) - b;
-        file << mod(r) << " " << n << std::endl;
+        file << mod(r) << " " << n <<  std::endl;
         n++;
     }
     file.close();
-    return x1;
+        return x1;
 }
 
 #endif //SLAE__GRADIENT_DESCENT_HPP

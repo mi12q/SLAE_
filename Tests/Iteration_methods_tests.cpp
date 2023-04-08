@@ -191,7 +191,7 @@ TEST(Conjugate_gradient, _3x3_matrix){
     std::vector<double> b = {1,2,3};
     std::vector<double> x = {1,1,1};
     double tolerance = pow(10,-12);
-    std::vector<double> solution = {0.0804084117,0.0000194982, 0.0115891967};
+    std::vector<double> solution = {0.0804084117,0.0000194982, 0.0115891967, 2.0840262614};
     std::vector<double> result = Conjugate_gradient(M, b, x, tolerance);
     for (int i = 0; i < result.size(); i++){
         ASSERT_NEAR(result[i], solution[i], 0.01);

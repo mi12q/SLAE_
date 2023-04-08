@@ -32,7 +32,7 @@ std::vector<T> Conjugate_gradient(const Matrix<T> &A, const std::vector<T> &b,co
         }
     }
     file.close();
-    return x1;
+        return x1;
 }
 
 #endif //SLAE__CONJUGATE_GRADIENT_HPP

@@ -40,7 +40,7 @@ std::vector<T> chebyshev_mpi(const Matrix<T> &A, const std::vector<T> &b,const s
         for(int i = 0; i < n; i++) {
             x1 = x1 - r * (1 / x[root_num[i]]);
             r = A.multiply(x1) - b;
-            file << mod(r) << " " << it << std::endl;
+            file << mod(r) << " " << it << " " << x << std::endl;
             it++;
         }
     }
