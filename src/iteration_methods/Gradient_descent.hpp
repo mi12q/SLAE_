@@ -17,7 +17,7 @@ std::vector<T> Gradient_descent(const Matrix<T> &A, const std::vector<T> &b,cons
         alpha = r*r/ (r*A.multiply(r));
         x1 = x1 - alpha*(A.multiply(x1) - b);
         r = A.multiply(x1) - b;
-        file << mod(r) << " " << n <<  std::endl;
+        file << x1 <<  std::endl;
         n++;
     }
     file.close();

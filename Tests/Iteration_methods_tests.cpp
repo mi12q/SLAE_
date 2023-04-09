@@ -97,7 +97,7 @@ TEST(MPI_chebyshev, _3x3_matrix){
     std::vector<double> x = {1,1,1};
     double tolerance = pow(10,-12);
     std::vector<double> solution = {0.0804084117,0.0000194982, 0.0115891967};
-    std::vector<double> result = chebyshev_mpi(M, b, x, tolerance, solution.size(), 11.943, 15825.069);
+    std::vector<double> result = chebyshev_mpi(M, b, x, tolerance, 5, 11.943, 15825.069);
     for (int i = 0; i < result.size(); i++){
         ASSERT_NEAR(result[i], solution[i], 0.01);
     }

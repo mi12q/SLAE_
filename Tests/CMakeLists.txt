@@ -17,5 +17,5 @@ target_link_libraries(Householder SLAE_ gtest gtest_main)
 add_executable(Iteration_methods_tests Iteration_methods_tests.cpp)
 target_link_libraries(Iteration_methods_tests SLAE_ gtest gtest_main)
 
-add_executable(CG_test KR.cpp)
+add_executable(CG_test KR/KR.cpp)
 target_link_libraries(CG_test SLAE_ gtest gtest_main)

@@ -24,7 +24,7 @@ std::vector<T> Conjugate_gradient(const Matrix<T> &A, const std::vector<T> &b,co
                 x1 = x1 - alpha * d;
                 r = r - alpha * (A.multiply(d));
                 d = r + (r*r)*temp * d;
-                file << mod(r) << " " << n << std::endl;
+                file << x1 << std::endl;
                 n++;
             }
             else

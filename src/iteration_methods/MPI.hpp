@@ -16,7 +16,7 @@ std::vector<T> MPI(const Matrix<T> &A, const std::vector<T> &b,const std::vector
     while(mod(r) > tolerance){
         x1 = x1 - tau*r;
         r = A.multiply(x1) - b;
-        file << mod(r) << " " << n << std::endl;
+        file << x1 <<std::endl;
         n++;
     }
     file.close();
