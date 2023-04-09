@@ -52,7 +52,6 @@ TEST(zad_1, _289x289_matrix) {
 }
 
 
-
 TEST(zad_2, _4x4_matrix){
     std::map<std::pair<int, int>, double> v;
     v[{0, 0}] = 19;
