@@ -1,13 +1,13 @@
 #include <iostream>
 #include "../../src/iteration_methods/MPI.hpp"
-#include "../../src/iteration_methods/Jacobi.hpp"
-#include "../../src/iteration_methods/gauss_seidel.hpp"
 #include "../../src/iteration_methods/MPI_chebyshev.hpp"
 #include "../../src/iteration_methods/SOR.hpp"
 #include "../../src/iteration_methods/SSOR.hpp"
 #include "../../src/iteration_methods/Gradient_descent.hpp"
 #include "../../src/iteration_methods/Conjugate_gradient.hpp"
 #include "gtest/gtest.h"
+using namespace std::chrono;
+
 
 TEST(zad_1, _289x289_matrix) {
     std::map<std::pair<int, int>, double> v;
@@ -42,11 +42,15 @@ TEST(zad_1, _289x289_matrix) {
     std::cout << SSOR(M, b, x, tolerance,1.2, 0.05) << std::endl;//Симметризирований метод верхней релаксации
 
     std::ofstream file;
-    file.open("/home/milica/CLionProjects/SLAE_/Tests/KR/Chebyshev_r(n).txt");
-    for (auto i = 0; i < 5000; i++){
-        lambda_max += 0.5;
+    file.open("/home/milica/CLionProjects/SLAE_/Tests/KR/time.txt");
+    for (auto i = 0; i < 2000; i++){
+        lambda_max += 1;
+        auto start = high_resolution_clock::now();
+        chebyshev_mpi(M, b, x, tolerance, 8, lambda_min, lambda_max);
+        auto stop = high_resolution_clock::now();
+        auto duration = duration_cast<microseconds>(stop - start);
         file << lambda_max-lambda_min << " "
-        << chebyshev_mpi(M, b, x, tolerance, 8, lambda_min, lambda_max).second.second << std::endl;
+        << duration.count()<< std::endl;
     }
     file.close();
 }
