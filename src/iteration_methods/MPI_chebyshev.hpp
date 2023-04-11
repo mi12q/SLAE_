@@ -11,11 +11,6 @@ template <typename T>
 std::pair<std::vector<T>, std::pair<double,std::size_t>> chebyshev_mpi(const Matrix<T> &A, const std::vector<T> &b,const std::vector<T> &x0, T tolerance, std::size_t roots,
                              double lambda_min, double lambda_max){
 
-//    std::string name = "/home/milica/CLionProjects/SLAE_/Tests/KR/"  + std::to_string(num) + ".txt";
-//    std::ofstream file;
-//    file.open(name );
-//    file.open("/home/milica/CLionProjects/SLAE_/src/iteration_methods/MPI_chebyshev.txt");
-
     std::ofstream file;
     file.open("/home/milica/CLionProjects/SLAE_/src/iteration_methods/MPI_chebyshev.txt");
     std::size_t n = pow(2,roots);
@@ -25,7 +20,6 @@ std::pair<std::vector<T>, std::pair<double,std::size_t>> chebyshev_mpi(const Mat
         std::size_t k = pow(2,roots-i);
         for(std::size_t  j = 0; j < n; j+= 2*k){
             root_num[j+k] = pow(2,i) - root_num[j] - 1;
-           // std::cout << root_num[j+k] << std::endl;
         }
     }
     double cos_a = cos(M_PI/n);
