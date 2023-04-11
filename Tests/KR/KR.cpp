@@ -38,7 +38,7 @@ TEST(zad_1, _289x289_matrix) {
     double tolerance = pow(10,-13);
     std::cout << MPI(M, b, x, tolerance, tau) << std::endl; //Градиентный спуск с tau = 1 / λmax;
     std::cout << MPI(M, b, x, tolerance, tau2) << std::endl; //Градиентный спуск с оптимальным параметром;
-    std::cout << chebyshev_mpi(M, b, x, tolerance, 8, lambda_min, lambda_max).first << std::endl; //Градиентный спуск с ускорением Чебышева
+    std::cout << chebyshev_mpi(M, b, x, tolerance, 3, lambda_min, lambda_max).first << std::endl; //Градиентный спуск с ускорением Чебышева
     std::cout << SSOR(M, b, x, tolerance,1.2, 0.05) << std::endl;//Симметризирований метод верхней релаксации
 
     std::ofstream file;
@@ -46,7 +46,7 @@ TEST(zad_1, _289x289_matrix) {
     for (auto i = 0; i < 2000; i++){
         lambda_max += 1;
         auto start = high_resolution_clock::now();
-        chebyshev_mpi(M, b, x, tolerance, 8, lambda_min, lambda_max);
+        chebyshev_mpi(M, b, x, tolerance, 3, lambda_min, lambda_max);
         auto stop = high_resolution_clock::now();
         auto duration = duration_cast<microseconds>(stop - start);
         file << lambda_max-lambda_min << " "
@@ -89,7 +89,7 @@ TEST(zad_2, _4x4_matrix){
     std::cout << "Optimal tau MPI: " << result2 << std::endl;
     std::vector<double> result3 = Gradient_descent(M, b, x, tolerance);
     std::cout << "Gradient descent: " << result3 << std::endl;
-    std::vector<double> result4 = chebyshev_mpi(M, b, x, tolerance, 8, lambda_min, lambda_max).first;
+    std::vector<double> result4 = chebyshev_mpi(M, b, x, tolerance, 3, lambda_min, lambda_max).first;
     std::cout << "Chebyshev MPI: " << result4 << std::endl;
     std::vector<double> result5 = Conjugate_gradient(M, b, x, tolerance);
     std::cout << "CG: " << result5 << std::endl;

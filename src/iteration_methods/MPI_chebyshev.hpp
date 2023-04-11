@@ -14,7 +14,7 @@ std::pair<std::vector<T>, std::pair<double,std::size_t>> chebyshev_mpi(const Mat
 //    std::string name = "/home/milica/CLionProjects/SLAE_/Tests/KR/"  + std::to_string(num) + ".txt";
 //    std::ofstream file;
 //    file.open(name );
-    //file.open("/home/milica/CLionProjects/SLAE_/src/iteration_methods/MPI_chebyshev.txt");
+//    file.open("/home/milica/CLionProjects/SLAE_/src/iteration_methods/MPI_chebyshev.txt");
 
     std::ofstream file;
     file.open("/home/milica/CLionProjects/SLAE_/src/iteration_methods/MPI_chebyshev.txt");
@@ -48,11 +48,10 @@ std::pair<std::vector<T>, std::pair<double,std::size_t>> chebyshev_mpi(const Mat
         for(auto i = 0; i < root_num.size(); i++) {
             x1 = x1 - r * (1 / x[root_num[i]]);
             r = A.multiply(x1) - b;
-            file << x1 << std::endl;
+            file << x1 << "\n";
             it++;
         }
     }
-    file.close();
     return std::make_pair(x1, std::make_pair(mod(r),it));;
 }
 
