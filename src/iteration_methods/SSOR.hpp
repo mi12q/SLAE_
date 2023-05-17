@@ -43,10 +43,27 @@ std::vector<T> SOR_iteration(const Matrix<T> &A, const std::vector<T> &b, const 
     return x0;
 }
 
+
 template <typename T>
-std::vector<T> SSOR(const Matrix<T> &A, const std::vector<T> &b, const std::vector <T> &x, T tolerance, T w, T ro){
+std::vector<T> SSOR(const Matrix<T> &A, const std::vector<T> &b, const std::vector <T> &x, T tolerance, T w){
     std::ofstream file;
     file.open("/home/milica/CLionProjects/SLAE_/src/iteration_methods/SSOR.txt");
+    std::vector<T> x0 = x;
+    std::vector<T> r = A.multiply(x0)-b;
+    int n = 0;
+    while(mod(r) > tolerance){
+        x0 = SOR_iteration(A,b,x0,w);
+        r = A.multiply(x0)-b;
+        file << mod(r) << " " << n << std::endl;
+        n++;
+    }
+    return x0;
+}
+
+template <typename T>
+std::vector<T> SSOR_chebyshev(const Matrix<T> &A, const std::vector<T> &b, const std::vector <T> &x, T tolerance, T w, T ro){
+    std::ofstream file;
+    file.open("/home/milica/CLionProjects/SLAE_/src/iteration_methods/SSOR_chebyshev.txt");
     std::vector<T> y0 = x;
     std::vector<T> y1 = SOR_iteration(A,b,y0,w);
     std::vector<T> t = SOR_iteration(A,b,y1,w);
